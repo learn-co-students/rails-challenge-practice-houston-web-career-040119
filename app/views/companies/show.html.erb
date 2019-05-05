@@ -1,0 +1,44 @@
+<h1><%= @company.name %></h1>
+
+<p>Rent paid: <%= @company.total_rent %></p>
+
+<p>Offices:
+<ul>
+<% @company.offices.each do |office| %>
+  <li>Floor <%= office.floor %> in <%= office.building.name %> building</li>
+<% end %>
+</ul>
+</p>
+
+
+
+<p><b>Create Employee</b>
+
+<% if flash[:errors] %>
+<ul>
+<% flash[:errors].each do |msg| %>
+  <li><%= msg %></li>
+<% end %>
+</ul>
+<% end %>
+
+<%= form_for @employee do |f| %>
+  <%= f.label :name %> <%= f.text_field :name %><br>
+  <%= f.label :title %> <%= f.text_field :title %><br>
+  <input type="hidden" name="company_id" value="<%= @company.id %>">
+  <%= f.submit %>
+<% end %>
+</p>
+
+
+
+<p>Employees:
+<ul>
+<% @company.employees.each do |employee| %>
+  <li><%= employee.name %>, <%= employee.title %>
+  <%= button_to "Delete", employee_path(employee), method: :delete %>
+  </li>
+<% end %>
+</ul>
+</p>
+

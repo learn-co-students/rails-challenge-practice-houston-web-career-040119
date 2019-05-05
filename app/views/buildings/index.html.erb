@@ -1,0 +1,11 @@
+<h1>Buildings</h1>
+
+<ul>
+<% @buildings.each do |building| %>
+  <li>
+  <%= link_to building.name, building_path(building) %> | 
+  Floors available: 
+  <%= building.number_of_floors_available.sort.map { |f| f.to_s }.join(", ") %>
+  </li> 
+<% end %>
+</ul>

@@ -1,0 +1,24 @@
+<h1><%= @building.name %></h1>
+
+<p>Total rent: <%= @building.total_rent %></p>
+
+<p>Country: <%= @building.country %></p>
+
+<p>Address: <%= @building.address %></p>
+
+<p>Rent per floor: <%= @building.rent_per_floor %></p>
+
+<p>Number of floors: <%= @building.number_of_floors %></p>
+
+<p><%= link_to "Edit this building", edit_building_path(@building) %></p>
+
+<% if @building.offices.count > 0 %>
+<p>Companies:<br>
+<ul>
+<% @building.offices.each do |office| %>
+  <li><%= link_to office.company.name, company_path(office.company) %>
+   on floor <%= office.floor %></li>
+<% end %>
+</ul></p>
+<% end %>
+
